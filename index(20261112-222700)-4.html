@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10100e">
+<title>Kemet Name Studio — Your Name in Ancient Egypt</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{
+  --bg:#10100e; --panel:#191916; --panel2:#201f1a; --gold:#d6ad62;
+  --gold2:#f1d79d; --cream:#f4eddf; --muted:#a9a08e; --line:rgba(214,173,98,.23);
+  --red:#8d3329; --green:#9bb38b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:
+  radial-gradient(ellipse at 50% -15%,rgba(167,119,48,.20),transparent 48%),
+  linear-gradient(180deg,#11110e 0%,#0c0c0a 100%);
+  color:var(--cream);font-family:Manrope,Arial,sans-serif;min-height:100vh}
+a{color:var(--gold2)}
+.wrap{width:min(1120px,calc(100% - 36px));margin:auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:24px 0;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--cream)}
+.brand-mark{width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:23px}
+.brand-name{font:600 17px Cinzel,serif;letter-spacing:2px}
+.nav{display:flex;gap:24px;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.nav a{text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--gold2)}
+.hero{text-align:center;padding:76px 0 44px}
+.eyebrow{color:var(--gold);font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:800}
+h1{font:500 clamp(38px,6vw,68px)/1.08 Cinzel,Georgia,serif;letter-spacing:-1.4px;margin:18px auto 16px;max-width:850px}
+h1 span{color:var(--gold2)}
+.lead{color:var(--muted);font-size:15px;line-height:1.8;max-width:620px;margin:0 auto}
+.form-card{max-width:760px;margin:0 auto 58px;padding:26px;background:linear-gradient(145deg,rgba(37,34,26,.95),rgba(22,22,18,.96));border:1px solid var(--line);border-radius:18px;box-shadow:0 22px 80px rgba(0,0,0,.25)}
+.form-label{display:block;font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold2);font-weight:800;margin-bottom:12px}
+.input-row{display:flex;gap:10px}
+input{flex:1;min-width:0;background:#0e0e0c;border:1px solid rgba(214,173,98,.32);border-radius:10px;padding:17px 18px;color:var(--cream);font:600 16px Manrope;outline:none}
+input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(214,173,98,.10)}
+button{border:0;border-radius:10px;background:linear-gradient(135deg,#e5c27e,#b9873c);color:#1a160e;font:800 12px Manrope;letter-spacing:1px;text-transform:uppercase;padding:0 24px;cursor:pointer;transition:.2s}
+button:hover{filter:brightness(1.08);transform:translateY(-1px)}
+button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.hint{font-size:11px;color:#827b6e;margin-top:11px}
+.results{display:none;margin:0 auto 70px}
+.results.show{display:block}
+.section-head{text-align:center;margin-bottom:24px}
+.section-head h2{font:500 28px Cinzel,serif;margin:0 0 8px}
+.section-head p{color:var(--muted);font-size:12px;margin:0}
+.name-chip{display:inline-block;margin-top:12px;padding:7px 14px;border:1px solid var(--line);border-radius:99px;color:var(--gold2);font-size:12px;letter-spacing:2px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:linear-gradient(160deg,#1c1c17,#141411);border:1px solid var(--line);border-radius:15px;padding:22px;min-height:300px;display:flex;flex-direction:column}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card h3{font:600 16px Cinzel,serif;color:var(--gold2);margin:0}
+.tag{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);border:1px solid rgba(255,255,255,.12);padding:5px 7px;border-radius:99px}
+.script-output{min-height:116px;display:grid;place-items:center;text-align:center;padding:18px 6px;margin:16px 0;background:rgba(0,0,0,.22);border-radius:10px;border:1px solid rgba(255,255,255,.05)}
+.cartouche{position:relative;width:min(100%,330px);min-height:116px;margin:auto;padding:24px 28px;display:grid;place-items:center;border:3px double var(--gold);border-radius:50% / 42%;background:radial-gradient(ellipse,rgba(214,173,98,.10),rgba(0,0,0,.18));box-shadow:inset 0 0 0 5px rgba(214,173,98,.06),0 0 22px rgba(214,173,98,.08)}
+.cartouche:before,.cartouche:after{content:"";position:absolute;top:50%;width:19px;height:2px;background:var(--gold);transform:translateY(-50%)}
+.cartouche:before{left:-12px}.cartouche:after{right:-12px}
+.glyphs{font-family:"Noto Sans Egyptian Hieroglyphs","Segoe UI Historic",serif;font-size:42px;line-height:1.5;letter-spacing:2px;overflow-wrap:anywhere;text-shadow:0 1px 10px rgba(214,173,98,.14)}
+.coptic{font-family:"Noto Sans Coptic","Segoe UI Historic",serif;font-size:38px;line-height:1.5;overflow-wrap:anywhere}
+.demotic-placeholder{font:500 14px/1.7 Manrope;color:var(--muted);max-width:260px}
+.subline{font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+.card-actions{display:flex;gap:8px;margin-top:auto;padding-top:18px}
+.small-btn{background:transparent;border:1px solid var(--line);color:var(--gold2);padding:10px 12px;font-size:10px;flex:1}
+.small-btn:hover{background:rgba(214,173,98,.08)}
+.note{max-width:850px;margin:22px auto 0;padding:16px 18px;border-left:2px solid var(--gold);background:rgba(214,173,98,.06);color:var(--muted);font-size:11px;line-height:1.8}
+.features{padding:52px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.feature{padding:8px}
+.feature .num{color:var(--gold);font:500 24px Cinzel}
+.feature h3{font:500 16px Cinzel;margin:12px 0 8px}
+.feature p{font-size:12px;color:var(--muted);line-height:1.8;margin:0}
+.footer{padding:30px 0 40px;display:flex;justify-content:space-between;gap:20px;color:#777164;font-size:10px;line-height:1.8}
+.footer strong{font:500 13px Cinzel;color:var(--gold)}
+.disclaimer{max-width:600px}
+@media(max-width:760px){
+ .nav{gap:12px;font-size:9px}.brand-name{font-size:13px}
+ .hero{padding:54px 0 32px}
+ .form-card{padding:18px;margin-bottom:42px}
+ .input-row{flex-direction:column}
+ button{min-height:50px}
+ .cards{grid-template-columns:1fr}
+ .card{min-height:250px}
+ .feature-grid{grid-template-columns:1fr;gap:18px}
+ .footer{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header class="wrap topbar">
+  <a class="brand" href="#">
+    <span class="brand-mark">𓂀</span>
+    <span class="brand-name">KEMET NAME STUDIO</span>
+  </a>
+  <nav class="nav">
+    <a href="#scripts">The scripts</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main>
+<section class="wrap hero">
+  <div class="eyebrow">A journey through ancient writing</div>
+  <h1>Your name.<br><span>Three ancient worlds.</span></h1>
+  <p class="lead">Discover how your name can be represented through the writing traditions of ancient Egypt and the Coptic language.</p>
+</section>
+
+<section class="wrap form-card" aria-label="Name converter">
+  <label class="form-label" for="nameInput">Enter your name in English</label>
+  <div class="input-row">
+    <input id="nameInput" maxlength="40" autocomplete="given-name" placeholder="e.g. Ziad, Sarah, Alexander" value="Ziad">
+    <button id="convertBtn" type="button">Discover my name</button>
+  </div>
+  <div class="hint">Use the spelling you prefer. For closer results, a pronunciation guide can be added in a future version.</div>
+</section>
+
+<section class="wrap results" id="results" aria-live="polite">
+  <div class="section-head">
+    <div class="eyebrow">Your name through time</div>
+    <h2>The three writing traditions</h2>
+    <p>These are modern phonetic approximations, not proof of an ancient historical spelling.</p>
+    <div class="name-chip" id="nameChip">ZIAD</div>
+  </div>
+  <div class="cards" id="scripts">
+    <article class="card">
+      <div class="card-top"><h3>Hieroglyphic</h3><span class="tag">Phonetic approximation</span></div>
+      <div class="script-output"><div class="cartouche"><div class="glyphs" id="hieroglyphOutput">𓊃𓇋𓄿𓂧</div></div></div>
+      <div class="subline">Consonant-sign based rendering with approximate vowel markers.</div>
+      <div class="card-actions"><button class="small-btn" data-copy="hieroglyphOutput">Copy signs</button></div>
+    </article>
+    <article class="card">
+      <div class="card-top"><h3>Demotic</h3><span class="tag">Research stage</span></div>
+      <div class="script-output"><div class="demotic-placeholder" id="demoticOutput">A specialist-reviewed Demotic rendering will appear here once a custom digital sign set is integrated.</div></div>
+      <div class="subline">Demotic is a cursive script. This prototype does not substitute decorative symbols for authentic Demotic writing.</div>
+      <div class="card-actions"><button class="small-btn" data-copy="demoticOutput">Copy note</button></div>
+    </article>
+    <article class="card">
+      <div class="card-top"><h3>Coptic</h3><span class="tag">Modern phonetic rendering</span></div>
+      <div class="script-output"><div class="coptic" id="copticOutput">ⲌⲒⲀⲆ</div></div>
+      <div class="subline">A modern name transcription using Coptic letters; dialect and sound choices may affect spelling.</div>
+      <div class="card-actions"><button class="small-btn" data-copy="copticOutput">Copy letters</button></div>
+    </article>
+  </div>
+  <div style="display:flex;justify-content:center;margin:24px auto 0">
+    <button id="downloadCard" type="button">Download name card (PNG)</button>
+  </div>
+  <div class="note"><strong style="color:var(--gold2)">Important:</strong> A modern English name did not necessarily exist in ancient Egypt. Hieroglyphic and Coptic outputs here are experimental sound-based renderings. Demotic requires its own specialist-checked sign rendering; it is not currently encoded as a separate Unicode script block.</div>
+</section>
+
+<section class="features" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Built with respect for history</div>
+      <h2>More than a symbol generator</h2>
+      <p>A clear distinction between historical writing and modern name adaptation.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature"><div class="num">01</div><h3>Phonetic, not fictional</h3><p>Modern names are mapped by sound as closely as the writing system allows, with uncertainty explained.</p></div>
+      <div class="feature"><div class="num">02</div><h3>Three distinct systems</h3><p>Hieroglyphic, Demotic, and Coptic are treated as different writing traditions—not interchangeable fonts.</p></div>
+      <div class="feature"><div class="num">03</div><h3>Made for sharing</h3><p>The next release can add cartouche artwork, high-resolution downloads, and shareable name cards.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap footer">
+  <div><strong>KEMET NAME STUDIO</strong><br>Discover your name through ancient writing.</div>
+  <div class="disclaimer">Prototype v0.1 · English-first interface<br>Historical and linguistic review is required before presenting outputs as authoritative.</div>
+</footer>
+
+<script>
+const hiero = {
+  a:"𓄿", b:"𓃀", c:"𓎡", d:"𓂧", e:"𓇋", f:"𓆑", g:"𓎼", h:"𓉔",
+  i:"𓇋", j:"𓆓", k:"𓎡", l:"𓃭", m:"𓅓", n:"𓈖", o:"𓅱", p:"𓊪",
+  q:"𓈎", r:"𓂋", s:"𓊃", t:"𓏏", u:"𓅱", v:"𓆑", w:"𓅱",
+  x:"𓎡𓊃", y:"𓇋", z:"𓊃"
+};
+const coptic = {
+  a:"Ⲁ", b:"Ⲃ", c:"Ⲥ", d:"Ⲇ", e:"Ⲉ", f:"Ϥ", g:"Ⲅ", h:"Ϩ",
+  i:"Ⲓ", j:"Ϫ", k:"Ⲕ", l:"Ⲗ", m:"Ⲙ", n:"Ⲛ", o:"Ⲟ", p:"Ⲡ",
+  q:"Ⲕ", r:"Ⲣ", s:"Ⲥ", t:"Ⲧ", u:"ⲞⲨ", v:"Ⲃ", w:"ⲞⲨ",
+  x:"ⲬⲤ", y:"Ⲓ", z:"Ⲍ"
+};
+function convertHieroglyphs(value){
+  const s=value.toLowerCase().replace(/[^a-z]/g,"");
+  const digraphs={sh:"𓈙",ch:"𓍿",kh:"𓐍",ph:"𓆑",th:"𓏏",ng:"𓈖𓎼"};
+  let out="";
+  for(let i=0;i<s.length;i++){
+    const pair=s.slice(i,i+2);
+    if(digraphs[pair]){out+=digraphs[pair];i++;continue;}
+    let ch=s[i];
+    if(ch==="c"){
+      out+=(s[i+1] && "eiy".includes(s[i+1]))?"𓊃":"𓎡";
+    } else {
+      out+=hiero[ch]||"";
+    }
+  }
+  return out || "—";
+}
+function convertCoptic(value){
+  const s=value.toLowerCase().replace(/[^a-z]/g,"");
+  const digraphs={sh:"Ϣ",ch:"Ϭ",th:"Ⲑ",ph:"Ⲫ",kh:"Ⲭ",ps:"Ⲯ"};
+  let out="";
+  for(let i=0;i<s.length;i++){
+    const pair=s.slice(i,i+2);
+    if(digraphs[pair]){out+=digraphs[pair];i++;continue;}
+    let ch=s[i];
+    if(ch==="c") out+=(s[i+1] && "eiy".includes(s[i+1]))?"Ⲥ":"Ⲕ";
+    else out+=coptic[ch]||"";
+  }
+  return out || "—";
+}
+function convert(){
+  const raw=document.getElementById("nameInput").value.trim();
+  if(!raw){document.getElementById("nameInput").focus();return;}
+  document.getElementById("nameChip").textContent=raw.toUpperCase();
+  document.getElementById("hieroglyphOutput").textContent=convertHieroglyphs(raw);
+  document.getElementById("copticOutput").textContent=convertCoptic(raw);
+  document.getElementById("results").classList.add("show");
+  document.getElementById("results").scrollIntoView({behavior:"smooth",block:"start"});
+}
+document.getElementById("convertBtn").addEventListener("click",convert);
+document.getElementById("nameInput").addEventListener("keydown",e=>{if(e.key==="Enter")convert();});
+document.querySelectorAll("[data-copy]").forEach(btn=>{
+  btn.addEventListener("click",async()=>{
+    const target=document.getElementById(btn.dataset.copy);
+    const text=target.textContent;
+    try{await navigator.clipboard.writeText(text);btn.textContent="Copied";}
+    catch(e){btn.textContent="Select and copy";}
+    setTimeout(()=>btn.textContent=btn.dataset.copy==="hieroglyphOutput"?"Copy signs":btn.dataset.copy==="copticOutput"?"Copy letters":"Copy note",1400);
+  });
+});
+convert();
+
+document.getElementById("downloadCard").addEventListener("click",()=>{
+  const name=document.getElementById("nameInput").value.trim();
+  if(!name)return;
+  const hieroText=document.getElementById("hieroglyphOutput").textContent;
+  const copticText=document.getElementById("copticOutput").textContent;
+  const canvas=document.createElement("canvas");
+  canvas.width=1600; canvas.height=1100;
+  const ctx=canvas.getContext("2d");
+
+  const bg=ctx.createLinearGradient(0,0,1600,1100);
+  bg.addColorStop(0,"#242117"); bg.addColorStop(.55,"#11110e"); bg.addColorStop(1,"#090908");
+  ctx.fillStyle=bg; ctx.fillRect(0,0,1600,1100);
+
+  // Subtle decorative border.
+  ctx.strokeStyle="#c99d52"; ctx.lineWidth=3;
+  ctx.strokeRect(34,34,1532,1032);
+  ctx.strokeStyle="rgba(214,173,98,.38)"; ctx.lineWidth=1;
+  ctx.strokeRect(52,52,1496,996);
+
+  ctx.textAlign="center";
+  ctx.fillStyle="#d6ad62";
+  ctx.font="600 30px Georgia,serif";
+  ctx.fillText("K E M E T   N A M E   S T U D I O",800,125);
+  ctx.fillStyle="#f4eddf";
+  ctx.font="500 62px Georgia,serif";
+  ctx.fillText("YOUR NAME IN ANCIENT EGYPT",800,220);
+
+  ctx.fillStyle="#d6ad62";
+  ctx.font="700 27px Arial,sans-serif";
+  ctx.fillText(name.toUpperCase(),800,300);
+
+  // Cartouche-like oval frame.
+  ctx.beginPath();
+  ctx.ellipse(800,490,470,150,0,0,Math.PI*2);
+  ctx.strokeStyle="#e0bd79"; ctx.lineWidth=7; ctx.stroke();
+  ctx.beginPath();
+  ctx.ellipse(800,490,452,133,0,0,Math.PI*2);
+  ctx.strokeStyle="rgba(224,189,121,.48)"; ctx.lineWidth=2; ctx.stroke();
+
+  ctx.fillStyle="#f1d79d";
+  ctx.font='64px "Noto Sans Egyptian Hieroglyphs","Segoe UI Historic",serif';
+  ctx.fillText(hieroText,800,515);
+
+  ctx.fillStyle="#d6ad62";
+  ctx.font="600 25px Georgia,serif";
+  ctx.fillText("COPTIC — MODERN PHONETIC APPROXIMATION",800,735);
+  ctx.fillStyle="#f4eddf";
+  ctx.font='58px "Noto Sans Coptic","Segoe UI Historic",serif';
+  ctx.fillText(copticText,800,820);
+
+  ctx.fillStyle="#a9a08e";
+  ctx.font="22px Arial,sans-serif";
+  ctx.fillText("Demotic rendering requires specialist-reviewed custom sign assets.",800,930);
+  ctx.fillText("Modern phonetic adaptation — not a verified ancient historical spelling.",800,974);
+
+  const link=document.createElement("a");
+  link.download="kemet-name-"+name.toLowerCase().replace(/[^a-z0-9]+/g,"-")+".png";
+  link.href=canvas.toDataURL("image/png");
+  link.click();
+});
+
+</script>
+</body>
+</html>
